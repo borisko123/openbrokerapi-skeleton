@@ -7,6 +7,6 @@ RUN pip install -r /tmp/requirements.txt
 
 COPY . /opt/app/
 RUN chmod -R 775 /opt/app
-RUN chown -R node:root /opt/app
+
 
 CMD python /opt/app/broker/__main__.py
