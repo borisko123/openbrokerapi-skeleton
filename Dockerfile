@@ -1,5 +1,6 @@
 FROM python:3.8
-
+RUN groupadd -r broker && useradd -r -g broker broker
+USER broker
 RUN pip install pipenv
 COPY Pipfile* /tmp/
 RUN cd /tmp && pipenv lock --requirements > requirements.txt
