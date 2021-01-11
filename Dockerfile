@@ -1,11 +1,12 @@
 FROM python:3.8
-RUN groupadd -r broker && useradd -r -g broker broker
-USER broker
+
 RUN pip install pipenv
 COPY Pipfile* /tmp/
 RUN cd /tmp && pipenv lock --requirements > requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 COPY . /opt/app/
+RUN chmod -R 775 /opt/app
+RUN chown -R node:root /opt/app
 
 CMD python /opt/app/broker/__main__.py
